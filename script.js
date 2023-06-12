@@ -61,7 +61,7 @@ async function playRound() {
     
     // hole question
     question = await getRandomQuestion();
-    answerText.textContent = question.answer;
+    answerText.textContent = "Antwort: " + question.answer;
     questionText.textContent = "Frage " + currentRound + ": " + question.question;
     
     // init input
