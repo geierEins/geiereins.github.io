@@ -1,0 +1,32 @@
+body {
+  background-color: #333333;
+  color: white;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.input-container {
+  margin-bottom: 20px;
+}
+
+.input-container input {
+  padding: 5px;
+  width: 200px;
+}
+
+.input-container button {
+  padding: 5px 10px;
+}
+
+#game-screen input,
+#game-screen button {
+  margin-top: 10px;
+}
+
+#answer button {
+  margin-top: 20px;
+}

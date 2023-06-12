@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Schätzspiel</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <!-- --------------------------------------------------------------- -->
+  <div id="start-screen">
+    <h1>Schätzspiel</h1>
+    <div class="input-container">
+      <input type="text" id="player1Name" placeholder="Spieler 1">
+    </div>
+    <div class="input-container">
+      <input type="text" id="player2Name" placeholder="Spieler 2">
+    </div>
+    <div class="input-container">
+      <label for="rounds-select">Rundenanzahl:</label>
+      <select id="rounds-select">
+        <option value="3" selected>3 Runden</option>
+        <option value="5">5 Runden</option>
+        <option value="7">7 Runden</option>  
+        <option value="10">10 Runden</option>
+      </select>
+    </div>
+    <button onclick="startGame()">Spiel starten</button>
+  </div>
+    
+   <!-- --------------------------------------------------------------- -->
+  <div id="game-screen" class="hidden">
+    <h1 id="question-text"></h1>
+    <div class="input-container">
+      <span id="player1Label"></span>
+      <input type="number" id="player1Input" placeholder="Spieler 1" min="0">
+      <button onclick="lockAnswer(1)">Bestätigen</button>
+    </div>
+    <div class="input-container">
+      <span id="player2Label"></span>
+      <input type="number" id="player2Input" placeholder="Spieler 2" min="0">
+      <button onclick="lockAnswer(2)">Bestätigen</button>
+    </div>
+    <div id="answer-div" class="hidden">
+      <h2 id ="answer-text"></h2>
+      <button onclick="nextRoundOrScores()">Weiter</button>
+    </div>
+  </div>
+    
+  <!-- --------------------------------------------------------------- -->
+  <div id="scores-screen" class="hidden">
+    <h1 id="winner"></h1>
+    <div id="scores"></div>
+    <button onclick="newGame()">Neues Spiel</button>
+  </div>
+    
+  <!-- --------------------------------------------------------------- -->
+  <script src="script.js"></script>
+</body>
+</html>
