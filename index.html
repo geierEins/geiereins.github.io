@@ -35,18 +35,20 @@
         <h1 id="frage-n-text"></h1>
         <h1 id="question-text"></h1>
         <div class="input-container">
-            <span id="player1Label"></span>
+            <h1 id ="player1Label"></h1>
+            <h1 id ="player1PointsLabel"></h1>
             <input type="number" id="player1Input" placeholder="..." min="0">
             <button onclick="lockAnswer(1)">Bestätigen</button>
         </div>
         <div class="input-container">
-            <span id="player2Label"></span>
+            <h1 id ="player2Label"></h1>
+            <h1 id ="player2PointsLabel"></h1>
             <input type="number" id="player2Input" placeholder="..." min="0">
             <button onclick="lockAnswer(2)">Bestätigen</button>
         </div>
         <div id="answer-div" class="hidden">
-            <h2 id ="answer-text"></h2>
-            <h3 id="round-winner-text"></h3>
+            <h1 id ="answer-text"></h1>
+            <h2 id="round-winner-text"></h2>
             <button onclick="nextRoundOrScores()">Weiter</button>
         </div>
     </div>

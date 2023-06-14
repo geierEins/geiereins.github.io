@@ -15,6 +15,7 @@ button {
     font-size: 20px;
     font-family: Arial, sans-serif;
     border: 1px solid #cccccc;
+    margin-left: 10px;
 }
 
 button:hover {
@@ -24,7 +25,7 @@ button:hover {
 
 input {
     width: 200px;
-    height: 50px;
+    height: 40px;
     font-size: 20px;
     background-color: lightgray;
     border: 1px solid gray;
@@ -63,11 +64,6 @@ h1 {
     color: #FFA54F;
 }
 
-#question-text {
-    color: #FFE4C4;
-}
-
-
 .hidden {
     display: none;
 }
@@ -102,4 +98,17 @@ h1 {
 }
 #player2Input {
     font-size: 34px;
+}
+#player1PointsLabel{
+    font-size: 30px;
+    color: #FFE4C4;
+    margin-left: 10px;
+}
+#player2PointsLabel{
+    font-size: 30px;
+    color: #FFE4C4;
+    margin-left: 10px;
+}
+#question-text {
+    color: #FFE4C4;
 }

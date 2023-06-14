@@ -13,9 +13,11 @@ const frageNrText = document.getElementById('frage-n-text'); //h1
 const questionText = document.getElementById('question-text'); //h1
 const answerDiv = document.getElementById('answer-div'); //div
 const answerText = document.getElementById('answer-text'); //h2
-const player1Label = document.getElementById('player1Label'); //span
-const player2Label = document.getElementById('player2Label'); //span
-const roundWinnerText = document.getElementById('round-winner-text'); //h3
+const player1Label = document.getElementById('player1Label'); //h1
+const player1PointsLabel = document.getElementById('player1PointsLabel'); //h1
+const player2Label = document.getElementById('player2Label'); //h1
+const player2PointsLabel = document.getElementById('player2PointsLabel'); //h1
+const roundWinnerText = document.getElementById('round-winner-text'); //h2
 
 // scores screen
 const scoresScreen = document.getElementById('scores-screen'); //div
@@ -44,6 +46,14 @@ function startGame() {
     player1Name = player1NameInput.value.trim();
     player2Name = player2NameInput.value.trim();
     totalRounds = parseInt(roundsSelect.value);
+    
+    if(player1Name==='' || player2Name===''){
+        Toastify({
+            text: "Spielername fehlt!",
+            backgroundColor: '#8B4500',
+            duration: 4000
+        }).showToast();
+    }
 
     if (player1Name !== '' && player2Name !== '') {
         startScreen.classList.add('hidden');
@@ -74,8 +84,10 @@ async function playRound() {
     player2Input.disabled = false;
     
     // show playernames and current score
-    player1Label.textContent = `${player1Name} (${player1Points}) `;
-    player2Label.textContent = `${player2Name} (${player2Points}) `;
+    player1Label.textContent = player1Name;
+    player1PointsLabel.textContent = '('+player1Points+')';    
+    player2Label.textContent = player2Name;
+    player2PointsLabel.textContent = '('+player2Points+')';
 }
 //------------------------------------------------------------------
 /*
@@ -87,6 +99,15 @@ function lockAnswer(player) {
     console.log("lockAnswer");
     const playerInput = player === 1 ? player1Input : player2Input;
     const playerPoints = player === 1 ? player1Points : player2Points;
+    
+    if(playerInput.value===''){
+        console.log("LEER");
+        Toastify({
+            text: "Eingabe darf nicht leer sein!",
+            backgroundColor: '#8B4500',
+            duration: 4000
+        }).showToast();
+    }
 
     // player input (guess) darf nicht leer sein
     if (playerInput.value !== '') {
