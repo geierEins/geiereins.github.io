@@ -1,18 +1,82 @@
 body {
-    transform: scale(1.5);
+    transform: scale(1);
     transform-origin: top center;
-    background-color: #333333;
+    background-color: #444444;
     color: white;
     font-family: Arial, sans-serif;
     text-align: center;
 }
+
+button {
+    background-color: #333333;
+    color: #ffffff;
+    width: 200px;
+    height: 55px;
+    font-size: 20px;
+    font-family: Arial, sans-serif;
+    border: 1px solid #cccccc;
+}
+
+button:hover {
+    background-color: #FFA54F;
+    color: #333333;
+}
+
+input {
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+    background-color: lightgray;
+    border: 1px solid gray;
+    margin-left: 10px;
+}
+
+input:hover {
+    background-color: #FFE4C4;
+    color: #333333;
+}
+
+select {
+    width: 200px;
+    height: 50px;
+    font-size: 16px;
+    background-color: lightgray;
+    color: #333333;
+    border: 1px solid gray;
+    padding: 5px;
+    margin-left: 10px;
+}
+
+select:hover {
+    background-color: #FFE4C4;
+    color: #333333;
+}
+
+span {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    font-size: 20px;
+    padding: 5px;
+    margin: 10px;
+}
+
+h1 {
+    color: #FFA54F;
+}
+
+#question-text {
+    color: #FFE4C4;
+}
+
 
 .hidden {
     display: none;
 }
 
 .input-container {
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* Horizontale Ausrichtung in der Mitte */
+    align-items: center; /* Vertikale Ausrichtung in der Mitte */
+    padding: 10px;
 }
 
 .input-container input {
@@ -31,4 +95,11 @@ body {
 
 #answer button {
     margin-top: 20px;
+}
+
+#player1Input {
+    font-size: 34px;
+}
+#player2Input {
+    font-size: 34px;
 }

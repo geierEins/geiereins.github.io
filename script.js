@@ -9,11 +9,13 @@ const roundsSelect = document.getElementById('rounds-select'); //select
 const gameScreen = document.getElementById('game-screen'); //div
 const player1Input = document.getElementById('player1Input'); //input
 const player2Input = document.getElementById('player2Input'); //input
+const frageNrText = document.getElementById('frage-n-text'); //h1
 const questionText = document.getElementById('question-text'); //h1
 const answerDiv = document.getElementById('answer-div'); //div
 const answerText = document.getElementById('answer-text'); //h2
 const player1Label = document.getElementById('player1Label'); //span
 const player2Label = document.getElementById('player2Label'); //span
+const roundWinnerText = document.getElementById('round-winner-text'); //h3
 
 // scores screen
 const scoresScreen = document.getElementById('scores-screen'); //div
@@ -62,7 +64,8 @@ async function playRound() {
     // hole question
     question = await getRandomQuestion();
     answerText.textContent = "Antwort: " + question.answer;
-    questionText.textContent = "Frage " + currentRound + ": " + question.question;
+    frageNrText.textContent = "Frage " + currentRound + ": ";
+    questionText.textContent = question.question;
     
     // init input
     player1Input.value = '';
@@ -97,13 +100,19 @@ function lockAnswer(player) {
         if (player1Input.disabled && player2Input.disabled) {
             answerDiv.classList.remove('hidden');
             const answer = question.answer;
+            const p1diff = Math.abs(answer-player1Input.value);
+            const p2diff = Math.abs(answer-player2Input.value);
             
-            if(Math.abs(answer-player1Input) < Math.abs(answer-player2Input)){
+            if(p1diff < p2diff){
                 player1Points++;
-                console.log(player1Name + " ist näher dran.");
-            } else {
+                roundWinnerText.textContent = player1Name + " ist näher dran.";
+            } else if(p1diff > p2diff){
                 player2Points++;
-                console.log(player2Name + " ist näher dran.");
+                roundWinnerText.textContent = player1Name + " ist näher dran.";
+            } else if (p1diff === p2diff){
+                player1Points++;
+                player2Points++;
+                roundWinnerText.textContent = "unentschieden.";
             }
         }
     }
