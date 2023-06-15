@@ -158,8 +158,8 @@ function lockAnswer(player) {
 async function getRandomQuestion() {
     console.log("getRandomQuestion");
     try {
-        const response = await fetch('http://localhost:8080/api/getRandomQuestion');
-        //const response = await fetch('https://question-generator.herokuapp.com/api/getRandomQuestion');
+        //const response = await fetch('http://localhost:8080/api/getRandomQuestion');
+        const response = await fetch('https://question-generator.herokuapp.com/api/getRandomQuestion');
         const data = await response.json();
         return data;
     } catch (error) {
