@@ -25,7 +25,8 @@ const roundWinnerText = document.getElementById('round-winner-text'); //h2
 
 // scores screen
 const scoresScreen = document.getElementById('scores-screen'); //div
-const scoresText = document.getElementById('scoresText'); //div
+const scoresText1 = document.getElementById('scoresText1'); //h2
+const scoresText2 = document.getElementById('scoresText2'); //h2
 const winnerElement = document.getElementById('winner'); //h1
 
 //------------------------------------------------------------------
@@ -103,6 +104,7 @@ function lockAnswer(player) {
     console.log("lockAnswer");
     const playerInput = player === 1 ? player1Input : player2Input;
     const playerPoints = player === 1 ? player1Points : player2Points;
+    playerInput.value = playerInput.value.replace(/,/g, '.');
     
     if(playerInput.value===''){
         console.log("LEER");
@@ -156,7 +158,8 @@ function lockAnswer(player) {
 async function getRandomQuestion() {
     console.log("getRandomQuestion");
     try {
-        const response = await fetch('https://question-generator.herokuapp.com/api/getRandomQuestion');
+        const response = await fetch('http://localhost:8080/api/getRandomQuestion');
+        //const response = await fetch('https://question-generator.herokuapp.com/api/getRandomQuestion');
         const data = await response.json();
         return data;
     } catch (error) {
@@ -194,7 +197,8 @@ function showScores() {
     // show winning playername
     winnerElement.textContent = player1Points > player2Points ? player1Name + " hat gewonnen!" : player2Name + " hat gewonnen!";
     // show scores
-    scoresText.textContent = player1Name + " - " + player1Points + "\n\n" + player2Name + " - " + player2Points;
+    scoresText1.textContent = player1Name + " - " + player1Points;
+    scoresText2.textContent = player2Name + " - " + player2Points;
 }
 //------------------------------------------------------------------
 // Funktion zum Starten eines neuen Spiels
@@ -215,7 +219,8 @@ function togglePasswordVisibility(player) {
     const togglePlayerInput = player === 1 ? togglePlayer1input : togglePlayer2input;
   
     if (playerInput.type === "password") {
-        playerInput.type = "text";
+        playerInput.value = playerInput.value.replace(/,/g, '.');
+        playerInput.type = "number";
         togglePlayerInput.innerHTML = '<i class="fa fa-eye"></i>';
     } else {
         playerInput.type = "password";
