@@ -9,6 +9,10 @@ const roundsSelect = document.getElementById('rounds-select'); //select
 const gameScreen = document.getElementById('game-screen'); //div
 const player1Input = document.getElementById('player1Input'); //input
 const player2Input = document.getElementById('player2Input'); //input
+const togglePlayer1Input = document.getElementById('togglePlayer1input'); //span
+const togglePlayer2Input = document.getElementById('togglePlayer2input'); //span
+const player1button = document.getElementById('player1button'); //button
+const player2button = document.getElementById('player2button'); //button
 const frageNrText = document.getElementById('frage-n-text'); //h1
 const questionText = document.getElementById('question-text'); //h1
 const answerDiv = document.getElementById('answer-div'); //div
@@ -21,7 +25,7 @@ const roundWinnerText = document.getElementById('round-winner-text'); //h2
 
 // scores screen
 const scoresScreen = document.getElementById('scores-screen'); //div
-const scoresElement = document.getElementById('scores'); //div
+const scoresText = document.getElementById('scoresText'); //div
 const winnerElement = document.getElementById('winner'); //h1
 
 //------------------------------------------------------------------
@@ -120,16 +124,24 @@ function lockAnswer(player) {
         // zeige richtige antwort, vergebe punkt
         if (player1Input.disabled && player2Input.disabled) {
             answerDiv.classList.remove('hidden');
+            player1button.disabled = true;
+            player2button.disabled = true;
             const answer = question.answer;
             const p1diff = Math.abs(answer-player1Input.value);
             const p2diff = Math.abs(answer-player2Input.value);
+            
+            // zeige die guesses beider player
+            player1Input.type = 'number';
+            player2Input.type = 'number';
+            togglePlayer1Input.innerHTML = '<i class="fa fa-eye"></i>';
+            togglePlayer2Input.innerHTML = '<i class="fa fa-eye"></i>';
             
             if(p1diff < p2diff){
                 player1Points++;
                 roundWinnerText.textContent = player1Name + " ist näher dran.";
             } else if(p1diff > p2diff){
                 player2Points++;
-                roundWinnerText.textContent = player1Name + " ist näher dran.";
+                roundWinnerText.textContent = player2Name + " ist näher dran.";
             } else if (p1diff === p2diff){
                 player1Points++;
                 player2Points++;
@@ -156,6 +168,16 @@ async function getRandomQuestion() {
 function nextRoundOrScores() {
     console.log("nextRoundOrScores");
     
+    // setze types der input fields zurück
+    player1Input.type = "password";
+    player2Input.type = "password";
+    togglePlayer1Input.innerHTML = '<i class="fa fa-eye-slash"></i>';
+    togglePlayer2Input.innerHTML = '<i class="fa fa-eye-slash"></i>';
+    
+    // mache buttons wieder clickbar
+    player1button.disabled = false;
+    player2button.disabled = false;
+    
     if(currentRound === totalRounds){
         showScores();
     } else {
@@ -172,10 +194,7 @@ function showScores() {
     // show winning playername
     winnerElement.textContent = player1Points > player2Points ? player1Name + " hat gewonnen!" : player2Name + " hat gewonnen!";
     // show scores
-    scoresElement.innerHTML = `
-        <p>${player1Name} - ${player1Points}</p>
-        <p>${player2Name} - ${player2Points}</p>
-    `;
+    scoresText.textContent = player1Name + " - " + player1Points + "\n\n" + player2Name + " - " + player2Points;
 }
 //------------------------------------------------------------------
 // Funktion zum Starten eines neuen Spiels
@@ -191,5 +210,17 @@ function newGame() {
     currentRound = 1;
 }
 //------------------------------------------------------------------
-// Spiel starten
+function togglePasswordVisibility(player) {
+    const playerInput = player === 1 ? player1Input : player2Input;
+    const togglePlayerInput = player === 1 ? togglePlayer1input : togglePlayer2input;
+  
+    if (playerInput.type === "password") {
+        playerInput.type = "text";
+        togglePlayerInput.innerHTML = '<i class="fa fa-eye"></i>';
+    } else {
+        playerInput.type = "password";
+        togglePlayerInput.innerHTML = '<i class="fa fa-eye-slash"></i>';
+    }
+}
+//------------------------------------------------------------------
 console.log("script-root");
